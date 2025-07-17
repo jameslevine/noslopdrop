@@ -1112,7 +1112,6 @@ function updateContent(lang) {
   t.languageLabel;
  document.querySelector(".credits").innerHTML = `
         <p>${t.footerText}</p>
-        <p>${t.inspiredBy} <a href="https://nohello.net" target="_blank">nohello.net</a></p>
         <p>${t.shareText}</p>
     `;
 

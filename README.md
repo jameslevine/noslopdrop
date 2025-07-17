@@ -8,7 +8,6 @@ A stylish, multilingual website promoting responsible AI usage and discouraging 
 
 ## ✨ Features
 
-- **Clean, Modern Design**: Inspired by nohello.net with a minimalist aesthetic
 - **Interactive Chat Mockups**: HTML/CSS chat interfaces showing good vs bad practices
 - **17 Language Support**: Comprehensive internationalization
 - **Responsive Design**: Works perfectly on mobile and desktop
