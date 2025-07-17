@@ -1,0 +1,1051 @@
+<!DOCTYPE html>
+<html lang="en">
+ <head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>
+   No Slop Drop - Please don't copy-paste AI answers without verification
+  </title>
+  <meta
+   name="description"
+   content="Stop the spread of misinformation by verifying AI-generated content before sharing it. Learn responsible AI practices."
+  />
+  <meta property="og:title" content="No Slop Drop - Responsible AI Usage" />
+  <meta
+   property="og:description"
+   content="Please don't copy-paste AI answers without verification"
+  />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://noslopdrop.net" />
+  <link
+   rel="icon"
+   href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🚫</text></svg>"
+  />
+  <style>
+   :root {
+    --primary-color: #e74c3c;
+    --secondary-color: #27ae60;
+    --background-color: #ffffff;
+    --text-color: #333333;
+    --text-secondary: #666666;
+    --border-color: #e1e8ed;
+    --card-background: #f8f9fa;
+    --code-background: #f4f4f4;
+    --shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    --accent-blue: #3498db;
+    --warning-bg: #fff3cd;
+    --warning-border: #ffeaa7;
+    --warning-text: #856404;
+    --success-bg: #d4edda;
+    --success-border: #c3e6cb;
+    --success-text: #155724;
+   }
+
+   [data-theme="dark"] {
+    --background-color: #1a1a1a;
+    --text-color: #e0e0e0;
+    --text-secondary: #b0b0b0;
+    --border-color: #333333;
+    --card-background: #2d2d2d;
+    --code-background: #3d3d3d;
+    --shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+    --warning-bg: #3d3416;
+    --warning-border: #5a4a1a;
+    --warning-text: #ffd700;
+    --success-bg: #1e3a1e;
+    --success-border: #2d5a2d;
+    --success-text: #90ee90;
+   }
+
+   * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+   }
+
+   body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen,
+     Ubuntu, Cantarell, sans-serif;
+    line-height: 1.6;
+    color: var(--text-color);
+    background-color: var(--background-color);
+    padding: 20px;
+    max-width: 800px;
+    margin: 0 auto;
+    transition: background-color 0.3s ease, color 0.3s ease;
+   }
+
+   .header {
+    text-align: center;
+    margin-bottom: 60px;
+   }
+
+   .main-title {
+    font-size: clamp(3rem, 8vw, 6rem);
+    font-weight: 900;
+    margin-bottom: 20px;
+    line-height: 1.1;
+   }
+
+   .strikethrough {
+    text-decoration: line-through;
+    text-decoration-color: #e74c3c;
+    text-decoration-thickness: 4px;
+   }
+
+   .subtitle {
+    font-size: clamp(1.1rem, 3vw, 1.4rem);
+    color: var(--text-secondary);
+    font-weight: 400;
+    margin-bottom: 40px;
+   }
+
+   .theme-toggle {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    background: var(--card-background);
+    border: 1px solid var(--border-color);
+    border-radius: 50px;
+    padding: 8px 16px;
+    cursor: pointer;
+    font-size: 0.9rem;
+    color: var(--text-color);
+    transition: all 0.3s ease;
+    box-shadow: var(--shadow);
+    z-index: 1000;
+   }
+
+   .theme-toggle:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+   }
+
+   .coffee-link-top {
+    position: fixed;
+    top: 20px;
+    left: 20px;
+    background: #ff813f;
+    color: white;
+    border: 1px solid #ff813f;
+    border-radius: 50px;
+    padding: 8px 16px;
+    text-decoration: none;
+    font-size: 0.9rem;
+    font-weight: 500;
+    transition: all 0.3s ease;
+    box-shadow: var(--shadow);
+    z-index: 1000;
+   }
+
+   .coffee-link-top:hover {
+    background: #e6732d;
+    border-color: #e6732d;
+    color: white;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+   }
+
+   .intro-text {
+    font-size: 1.2rem;
+    margin-bottom: 40px;
+    text-align: left;
+   }
+
+   .section {
+    margin-bottom: 60px;
+   }
+
+   .section-title {
+    font-size: 2.5rem;
+    font-weight: 700;
+    margin-bottom: 30px;
+    display: flex;
+    align-items: center;
+    gap: 15px;
+   }
+
+   .dont-do {
+    color: #e74c3c;
+   }
+
+   .do-this {
+    color: #27ae60;
+   }
+
+   /* Chat Interface Styles */
+   .chat-container {
+    background: var(--card-background);
+    border-radius: 12px;
+    padding: 20px;
+    margin: 30px 0;
+    box-shadow: var(--shadow);
+    border: 1px solid var(--border-color);
+   }
+
+   .chat-header {
+    display: flex;
+    align-items: center;
+    padding-bottom: 15px;
+    border-bottom: 1px solid var(--border-color);
+    margin-bottom: 20px;
+   }
+
+   .chat-title {
+    font-weight: 600;
+    color: var(--text-color);
+    font-size: 1.1rem;
+   }
+
+   .message {
+    display: flex;
+    margin-bottom: 15px;
+    align-items: flex-start;
+    gap: 12px;
+   }
+
+   .avatar {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 600;
+    font-size: 0.9rem;
+    color: white;
+    flex-shrink: 0;
+   }
+
+   .avatar-1 {
+    background: #3498db;
+   }
+   .avatar-2 {
+    background: #e74c3c;
+   }
+   .avatar-3 {
+    background: #27ae60;
+   }
+   .avatar-4 {
+    background: #f39c12;
+   }
+
+   .message-content {
+    flex: 1;
+   }
+
+   .message-header {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 4px;
+   }
+
+   .username {
+    font-weight: 600;
+    font-size: 0.95rem;
+   }
+
+   .timestamp {
+    font-size: 0.8rem;
+    color: var(--text-secondary);
+   }
+
+   .message-text {
+    background: var(--background-color);
+    padding: 12px 16px;
+    border-radius: 8px;
+    border: 1px solid var(--border-color);
+    font-size: 0.95rem;
+    line-height: 1.4;
+   }
+
+   .bad-message .message-text {
+    border-left: 4px solid #e74c3c;
+   }
+
+   .good-message .message-text {
+    border-left: 4px solid #27ae60;
+   }
+
+   .problem-indicator {
+    background: var(--warning-bg);
+    border: 1px solid var(--warning-border);
+    border-radius: 6px;
+    padding: 10px;
+    margin-top: 15px;
+    font-size: 0.9rem;
+    color: var(--warning-text);
+   }
+
+   .success-indicator {
+    background: var(--success-bg);
+    border: 1px solid var(--success-border);
+    border-radius: 6px;
+    padding: 10px;
+    margin-top: 15px;
+    font-size: 0.9rem;
+    color: var(--success-text);
+   }
+
+   .examples-list {
+    list-style: none;
+    margin: 20px 0;
+   }
+
+   .examples-list li {
+    padding: 12px 0;
+    border-bottom: 1px solid var(--border-color);
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+   }
+
+   .examples-list li:last-child {
+    border-bottom: none;
+   }
+
+   .icon {
+    font-size: 1.2rem;
+    margin-top: 2px;
+   }
+
+   .explanation {
+    background: var(--card-background);
+    padding: 25px;
+    border-radius: 8px;
+    margin: 30px 0;
+    border-left: 4px solid var(--accent-blue);
+   }
+
+   .explanation h3 {
+    margin-bottom: 15px;
+    color: var(--text-color);
+   }
+
+   .footer {
+    margin-top: 80px;
+    padding-top: 40px;
+    border-top: 1px solid var(--border-color);
+    text-align: center;
+    color: var(--text-secondary);
+    font-size: 0.9rem;
+   }
+
+   .language-selector {
+    margin: 20px 0;
+   }
+
+   .language-selector select {
+    padding: 8px 12px;
+    border: 1px solid var(--border-color);
+    border-radius: 4px;
+    background: var(--background-color);
+    color: var(--text-color);
+    font-size: 0.9rem;
+   }
+
+   .credits {
+    margin-top: 20px;
+   }
+
+   .credits a {
+    color: var(--accent-blue);
+    text-decoration: none;
+   }
+
+   .credits a:hover {
+    text-decoration: underline;
+   }
+
+   /* Responsive Design */
+   @media (max-width: 768px) {
+    body {
+     padding: 15px;
+    }
+
+    .section-title {
+     font-size: 2rem;
+    }
+
+    .chat-container {
+     padding: 15px;
+    }
+
+    .message {
+     gap: 8px;
+    }
+
+    .avatar {
+     width: 35px;
+     height: 35px;
+     font-size: 0.8rem;
+    }
+   }
+
+   /* Animation */
+   .chat-container {
+    animation: fadeIn 0.6s ease-out;
+   }
+
+   @keyframes fadeIn {
+    from {
+     opacity: 0;
+     transform: translateY(20px);
+    }
+    to {
+     opacity: 1;
+     transform: translateY(0);
+    }
+   }
+
+   /* RTL Support */
+   [dir="rtl"] {
+    direction: rtl;
+    text-align: right;
+   }
+
+   [dir="rtl"] .header {
+    text-align: center; /* Keep header centered for all languages */
+   }
+
+   [dir="rtl"] .intro-text {
+    text-align: right;
+   }
+
+   [dir="rtl"] .section-title {
+    flex-direction: row-reverse;
+   }
+
+   [dir="rtl"] .message {
+    flex-direction: row-reverse;
+   }
+
+   [dir="rtl"] .message-header {
+    flex-direction: row-reverse;
+   }
+
+   [dir="rtl"] .examples-list li {
+    flex-direction: row-reverse;
+   }
+
+   [dir="rtl"] .explanation {
+    border-left: none;
+    border-right: 4px solid var(--accent-blue);
+   }
+
+   [dir="rtl"] .bad-message .message-text {
+    border-left: none;
+    border-right: 4px solid #e74c3c;
+   }
+
+   [dir="rtl"] .good-message .message-text {
+    border-left: none;
+    border-right: 4px solid #27ae60;
+   }
+
+   [dir="rtl"] .theme-toggle {
+    right: auto;
+    left: 20px;
+   }
+
+   [dir="rtl"] .coffee-link-top {
+    left: auto;
+    right: 20px;
+   }
+
+   [dir="rtl"] .footer {
+    text-align: center; /* Keep footer centered */
+   }
+
+   /* RTL-specific font adjustments for better readability */
+   [dir="rtl"] body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+     "Noto Sans Arabic", "Noto Sans Hebrew", Oxygen, Ubuntu, Cantarell,
+     sans-serif;
+   }
+
+   /* Social Share Widget */
+   .share-widget {
+    background: var(--card-background);
+    border-radius: 12px;
+    padding: 25px;
+    margin: 40px 0;
+    box-shadow: var(--shadow);
+    border: 1px solid var(--border-color);
+    text-align: center;
+   }
+
+   .share-title {
+    font-size: 1.3rem;
+    font-weight: 600;
+    margin-bottom: 20px;
+    color: var(--text-color);
+   }
+
+   .share-buttons {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+    justify-content: center;
+    align-items: center;
+   }
+
+   .share-button {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 10px 16px;
+    border-radius: 8px;
+    text-decoration: none;
+    font-weight: 500;
+    font-size: 0.9rem;
+    transition: all 0.3s ease;
+    border: 1px solid var(--border-color);
+    background: var(--background-color);
+    color: var(--text-color);
+   }
+
+   .share-button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+   }
+
+   .share-button.whatsapp {
+    background: #25d366;
+    color: white;
+    border-color: #25d366;
+   }
+
+   .share-button.facebook {
+    background: #1877f2;
+    color: white;
+    border-color: #1877f2;
+   }
+
+   .share-button.twitter {
+    background: #1da1f2;
+    color: white;
+    border-color: #1da1f2;
+   }
+
+   .share-button.linkedin {
+    background: #0077b5;
+    color: white;
+    border-color: #0077b5;
+   }
+
+   .share-button.reddit {
+    background: #ff4500;
+    color: white;
+    border-color: #ff4500;
+   }
+
+   .share-button.email {
+    background: var(--accent-blue);
+    color: white;
+    border-color: var(--accent-blue);
+   }
+
+   .share-button.copy {
+    background: var(--secondary-color);
+    color: white;
+    border-color: var(--secondary-color);
+   }
+
+   .share-button.copy.copied {
+    background: var(--success-bg);
+    color: var(--success-text);
+    border-color: var(--success-border);
+   }
+
+   /* Support Links */
+   .support-links {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    justify-content: center;
+    margin: 20px 0;
+   }
+
+   .support-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 10px 16px;
+    border-radius: 8px;
+    text-decoration: none;
+    font-weight: 500;
+    font-size: 0.9rem;
+    transition: all 0.3s ease;
+    border: 1px solid var(--border-color);
+    background: var(--card-background);
+    color: var(--text-color);
+   }
+
+   .support-link:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    color: var(--accent-blue);
+    border-color: var(--accent-blue);
+   }
+
+   .support-link.coffee {
+    background: #ff813f;
+    color: white;
+    border-color: #ff813f;
+   }
+
+   .support-link.coffee:hover {
+    background: #e6732d;
+    border-color: #e6732d;
+    color: white;
+   }
+
+   .support-link.github {
+    background: #333;
+    color: white;
+    border-color: #333;
+   }
+
+   .support-link.github:hover {
+    background: #555;
+    border-color: #555;
+    color: white;
+   }
+
+   [data-theme="dark"] .support-link.github {
+    background: #f0f6fc;
+    color: #24292f;
+    border-color: #f0f6fc;
+   }
+
+   [data-theme="dark"] .support-link.github:hover {
+    background: #e6edf3;
+    border-color: #e6edf3;
+    color: #24292f;
+   }
+
+   /* RTL Support for Share Widget */
+   [dir="rtl"] .share-buttons {
+    flex-direction: row-reverse;
+   }
+
+   [dir="rtl"] .support-links {
+    flex-direction: row-reverse;
+   }
+
+   /* Responsive Design for Share Widget */
+   @media (max-width: 768px) {
+    .share-widget {
+     padding: 20px;
+    }
+
+    .share-buttons {
+     gap: 8px;
+    }
+
+    .share-button {
+     padding: 8px 12px;
+     font-size: 0.8rem;
+    }
+
+    .support-links {
+     gap: 12px;
+    }
+
+    .support-link {
+     padding: 8px 12px;
+     font-size: 0.8rem;
+    }
+   }
+  </style>
+ </head>
+ <body>
+  <button
+   class="theme-toggle"
+   onclick="toggleTheme()"
+   aria-label="Toggle dark mode"
+  >
+   🌙
+  </button>
+
+  <a
+   href="https://ko-fi.com/noslopdrop"
+   class="coffee-link-top"
+   target="_blank"
+   rel="noopener noreferrer"
+   aria-label="Buy me a coffee"
+  >
+   ☕ Coffee
+  </a>
+
+  <div class="header">
+   <h1 class="main-title">no <span class="strikethrough">slop drop</span></h1>
+   <p class="subtitle">
+    please don't copy-paste AI answers without verification
+   </p>
+  </div>
+
+  <div class="intro-text">
+   <p>
+    Imagine asking someone a technical question, and they immediately respond
+    with an AI-generated answer they haven't even read... 🤦‍♀️
+   </p>
+  </div>
+
+  <!-- Bad Example Chat -->
+  <div class="chat-container">
+   <div class="chat-header">
+    <div class="chat-title">#help-channel</div>
+   </div>
+
+   <div class="message">
+    <div class="avatar avatar-1">DN</div>
+    <div class="message-content">
+     <div class="message-header">
+      <span class="username">DevNewbie</span>
+      <span class="timestamp">2:15 PM</span>
+     </div>
+     <div class="message-text">
+      Hey everyone! I'm getting this weird React error when trying to update
+      state. Anyone know how to fix it?
+     </div>
+    </div>
+   </div>
+
+   <div class="message bad-message">
+    <div class="avatar avatar-2">QH</div>
+    <div class="message-content">
+     <div class="message-header">
+      <span class="username">QuickHelper</span>
+      <span class="timestamp">2:16 PM</span>
+     </div>
+     <div class="message-text">
+      ChatGPT says you should use componentWillMount() in your constructor to
+      handle state updates properly.
+     </div>
+    </div>
+   </div>
+
+   <div class="message">
+    <div class="avatar avatar-1">DN</div>
+    <div class="message-content">
+     <div class="message-header">
+      <span class="username">DevNewbie</span>
+      <span class="timestamp">2:17 PM</span>
+     </div>
+     <div class="message-text">Thanks! Will try that right now.</div>
+    </div>
+   </div>
+
+   <div class="problem-indicator">
+    ⚠️ <strong>Problem:</strong> componentWillMount() has been deprecated since
+    React 16.3 (2018). This advice is outdated and could break modern React
+    applications.
+   </div>
+  </div>
+
+  <section class="section">
+   <h2 class="section-title dont-do">❌ Don't do this</h2>
+
+   <p>
+    People who copy-paste AI responses without verification are often trying to
+    be helpful, but they're actually causing harm:
+   </p>
+
+   <ul class="examples-list">
+    <li>
+     <span class="icon">❌</span>
+     <div>
+      <strong>"ChatGPT says..."</strong> followed by unverified information
+     </div>
+    </li>
+    <li>
+     <span class="icon">❌</span>
+     <div>
+      <strong>Copy-pasting code snippets</strong> without testing them first
+     </div>
+    </li>
+    <li>
+     <span class="icon">❌</span>
+     <div>
+      <strong>Sharing AI-generated advice</strong> for critical topics (medical,
+      legal, financial)
+     </div>
+    </li>
+    <li>
+     <span class="icon">❌</span>
+     <div>
+      <strong>Using AI responses as gospel</strong> without considering context
+      or accuracy
+     </div>
+    </li>
+    <li>
+     <span class="icon">❌</span>
+     <div>
+      <strong>"Quick Google/AI search"</strong> responses that haven't been
+      validated
+     </div>
+    </li>
+   </ul>
+
+   <div class="explanation">
+    <h3>Why this is harmful:</h3>
+    <p>
+     When you copy-paste AI responses without verification, you're
+     <strong>contributing to misinformation spread</strong>. AI can be
+     confidently wrong, and outdated information can cause real problems. You're
+     also missing opportunities to learn and understand the topic yourself.
+    </p>
+   </div>
+  </section>
+
+  <!-- Good Example Chat -->
+  <div class="chat-container">
+   <div class="chat-header">
+    <div class="chat-title">#help-channel</div>
+   </div>
+
+   <div class="message">
+    <div class="avatar avatar-1">DN</div>
+    <div class="message-content">
+     <div class="message-header">
+      <span class="username">DevNewbie</span>
+      <span class="timestamp">2:15 PM</span>
+     </div>
+     <div class="message-text">
+      Hey everyone! I'm getting this weird React error when trying to update
+      state. Anyone know how to fix it?
+     </div>
+    </div>
+   </div>
+
+   <div class="message good-message">
+    <div class="avatar avatar-3">ED</div>
+    <div class="message-content">
+     <div class="message-header">
+      <span class="username">ExperiencedDev</span>
+      <span class="timestamp">2:18 PM</span>
+     </div>
+     <div class="message-text">
+      I've encountered this before. Here's an approach using useEffect that
+      might help, but you should test it with your specific setup. Also, check
+      the official React docs on state updates: https://react.dev/learn/state.
+      Let me know if you need clarification on any part!
+     </div>
+    </div>
+   </div>
+
+   <div class="message">
+    <div class="avatar avatar-1">DN</div>
+    <div class="message-content">
+     <div class="message-header">
+      <span class="username">DevNewbie</span>
+      <span class="timestamp">2:25 PM</span>
+     </div>
+     <div class="message-text">
+      Perfect! This worked and the docs helped me understand why. Thanks for the
+      explanation and the official resource!
+     </div>
+    </div>
+   </div>
+
+   <div class="success-indicator">
+    ✅ <strong>Success:</strong> Thoughtful response with context, verification
+    advice, official documentation, and follow-up support.
+   </div>
+  </div>
+
+  <section class="section">
+   <h2 class="section-title do-this">✅ Instead try this</h2>
+
+   <p>Use AI as a starting point, not the final answer:</p>
+
+   <ul class="examples-list">
+    <li>
+     <span class="icon">✅</span>
+     <div>
+      <strong>Read and understand</strong> AI responses before sharing them
+     </div>
+    </li>
+    <li>
+     <span class="icon">✅</span>
+     <div>
+      <strong>Test code snippets</strong> in your environment before
+      recommending them
+     </div>
+    </li>
+    <li>
+     <span class="icon">✅</span>
+     <div>
+      <strong>Add context:</strong> "I found this approach, but you should
+      verify it for your use case..."
+     </div>
+    </li>
+    <li>
+     <span class="icon">✅</span>
+     <div>
+      <strong>Cite official sources</strong> alongside AI-generated content
+     </div>
+    </li>
+    <li>
+     <span class="icon">✅</span>
+     <div>
+      <strong>Acknowledge uncertainty:</strong> "This might work, but
+      double-check the documentation"
+     </div>
+    </li>
+    <li>
+     <span class="icon">✅</span>
+     <div>
+      <strong>Encourage learning:</strong> Share resources for deeper
+      understanding
+     </div>
+    </li>
+   </ul>
+
+   <div class="explanation">
+    <h3>Benefits of responsible AI usage:</h3>
+    <p>
+     When you verify AI responses before sharing, you
+     <strong>maintain trust in your community</strong>, reduce misinformation
+     spread, and encourage genuine learning. You're using AI as a powerful tool
+     while staying intellectually honest.
+    </p>
+   </div>
+  </section>
+
+  <div class="explanation">
+   <h3>Remember: AI is a tool, not an oracle 🔮</h3>
+   <p>
+    AI can provide great starting points and suggestions, but it can also be
+    confidently incorrect. The key is to use it responsibly - verify,
+    understand, and add your own context before sharing with others.
+   </p>
+   <p>
+    <strong
+     >Just ask yourself: "Have I actually read and understood this before
+     sharing it?"</strong
+    >
+    🤔
+   </p>
+  </div>
+
+  <!-- Social Share Widget -->
+  <div class="share-widget">
+   <h3 class="share-title">📢 Help spread the word!</h3>
+   <div class="share-buttons">
+    <a
+     href="#"
+     class="share-button whatsapp"
+     onclick="shareToWhatsApp()"
+     aria-label="Share on WhatsApp"
+    >
+     📱 WhatsApp
+    </a>
+    <a
+     href="#"
+     class="share-button facebook"
+     onclick="shareToFacebook()"
+     aria-label="Share on Facebook"
+    >
+     📘 Facebook
+    </a>
+    <a
+     href="#"
+     class="share-button twitter"
+     onclick="shareToTwitter()"
+     aria-label="Share on Twitter"
+    >
+     🐦 Twitter
+    </a>
+    <a
+     href="#"
+     class="share-button linkedin"
+     onclick="shareToLinkedIn()"
+     aria-label="Share on LinkedIn"
+    >
+     💼 LinkedIn
+    </a>
+    <a
+     href="#"
+     class="share-button reddit"
+     onclick="shareToReddit()"
+     aria-label="Share on Reddit"
+    >
+     🔗 Reddit
+    </a>
+    <a
+     href="#"
+     class="share-button email"
+     onclick="shareViaEmail()"
+     aria-label="Share via Email"
+    >
+     ✉️ Email
+    </a>
+    <a
+     href="#"
+     class="share-button copy"
+     onclick="copyLink()"
+     aria-label="Copy Link"
+    >
+     📋 Copy Link
+    </a>
+   </div>
+  </div>
+
+  <footer class="footer">
+   <div class="language-selector">
+    <label for="language">Language: </label>
+    <select id="language" onchange="changeLanguage(this.value)">
+     <option value="en">English</option>
+     <option value="cs">Čeština</option>
+     <option value="de">Deutsch</option>
+     <option value="es">Español</option>
+     <option value="fa">فارسی</option>
+     <option value="fr">Français</option>
+     <option value="he">עברית</option>
+     <option value="id">Bahasa Indonesia</option>
+     <option value="it">Italiano</option>
+     <option value="pl">Polski</option>
+     <option value="pt-br">Português do Brasil</option>
+     <option value="ru">русский</option>
+     <option value="sv">svenska</option>
+     <option value="tr">Türkçe</option>
+     <option value="uk">Українська</option>
+     <option value="vi">Tiếng Việt</option>
+     <option value="zh-cn">简体中文</option>
+    </select>
+   </div>
+
+   <div class="support-links">
+    <a
+     href="https://ko-fi.com/noslopdrop"
+     class="support-link coffee"
+     target="_blank"
+     rel="noopener noreferrer"
+     aria-label="Buy me a coffee"
+    >
+     ☕ Buy me a coffee
+    </a>
+    <a
+     href="https://github.com/noslopdrop/noslopdrop"
+     class="support-link github"
+     target="_blank"
+     rel="noopener noreferrer"
+     aria-label="Suggest improvements on GitHub"
+    >
+     💡 Suggest improvements
+    </a>
+   </div>
+
+   <div class="credits">
+    <p>This site promotes responsible AI usage. 🤖✨</p>
+    <p>Share this: <strong>noslopdrop.net</strong></p>
+   </div>
+  </footer>
+
+  <script src="script.js"></script>
+ </body>
+</html>
