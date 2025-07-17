@@ -140,10 +140,6 @@ noslopdrop/
 - **Optimized images** - SVG favicon, no heavy assets
 - **Fast loading** - Typically under 100KB total
 
-## 📄 License
-
-This project is inspired by [nohello.net](https://nohello.net) and promotes responsible AI usage. Feel free to use, modify, and distribute.
-
 ## 🤝 Contributing
 
 Contributions are welcome! Areas for improvement:
@@ -152,11 +148,7 @@ Contributions are welcome! Areas for improvement:
 - Accessibility enhancements
 - New examples of AI misuse/good practices
 - Performance optimizations
-
-## 🔗 Related Projects
-
-- [nohello.net](https://nohello.net) - Original inspiration
-- [dontasktoask.com](https://dontasktoask.com) - Similar educational approach
+- Other no-X types of pages you'd like to see
 
 ---
 
